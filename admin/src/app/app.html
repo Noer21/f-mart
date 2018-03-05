@@ -1,0 +1,45 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="background">
+        <div class="mainTittle">
+          <div class="judul1">
+            F-mart Application
+          </div>
+          <div class="judul2">
+            Welcome
+          </div>
+          <div class="judul3">
+            Manager
+          </div>
+        </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="background">
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="background listMenu">
+        {{p.title}}
+      </button>
+      <ion-item class="background"></ion-item>
+    </ion-list>
+    <div class="info">
+        <div class="row">
+          <div col-5></div>
+          <div col-2><ion-icon name="information-circle" class="iconstyle"></ion-icon><br/></div>
+          <div col-5></div>
+        </div>
+        <div class="infoText">
+          About Us
+        </div>
+    </div>
+    <div class="fateta">
+      F-MArt Application | 2018<br/>BEM FATETA 2018
+    </div>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

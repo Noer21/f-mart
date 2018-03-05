@@ -1,0 +1,70 @@
+// http://ionicframework.com/docs/theming/
+
+.background{
+    background-color: $cssRedMedium;
+    border-color: $cssRedMedium;
+}
+
+.listMenu{
+    font-size: 5vw;
+    color: white;
+}
+
+.mainTittle{
+    margin: 3vw;
+    text-align: center;
+    background-color: $cssRedDark;
+    color: white;
+}
+
+.judul1{
+    padding: 2vw 2vw 6vw 2vw;
+}
+
+.judul2{
+    font-size: 3vw;
+}
+
+.judul3{
+    font-size: 7vw;
+    padding: 0vw 0vw 4vw 0vw;
+    margin-bottom: 4vw;
+}
+
+.iconstyle{
+    font-size: 13vw;
+    color: white;
+    text-align: center 
+}
+
+.info{
+    transform-origin: center;
+    margin-top: 60%;
+}
+
+.infoText{
+    text-align: center;
+    font-size: 4vw;
+    color: white;
+}
+
+.fateta{
+    text-align: center;
+    font-size: 5vw;
+    color: white;
+    padding : 8vw 0vw 0vw 0vw;
+}
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
