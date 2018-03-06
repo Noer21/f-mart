@@ -1,3 +1,43 @@
 page-laporan-penjualan {
+    .inputSelect{
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
 
+    .tanggal{
+        
+    }
+
+    #container{
+        overflow-x:scroll; 
+        width:400px;
+        
+      }
+    #content{
+        overflow-x:scroll; /* when content is wider than container scrolling will occur on the x axis */
+        width:1500px; /* this creates the overflow area in the container */
+        text-align: center;
+        background: white;
+        border: 0.1vw solid black;
+        
+      }
+
+    .borderHead{
+      border: 0.1vw solid black;
+    }
+
+    .borderCont{
+      border: 0vw 0.1vw 0vw 0.1vw solid black;
+    }
+
+    .footer{
+        text-align: center;
+        font-size: 4vw;
+    }
+
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat:  no-repeat;
+        background-size: cover;
+    }
 }

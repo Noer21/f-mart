@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="cssRedMedium">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -15,6 +15,136 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
+  <div class="row">
+    <div col-6>
+      <ion-list>
+        <ion-item>
+          <ion-select [(ngModel)]="waktu" placeholder="Jangka Waktu" item-width="40px" class="inputSelect">
+            <ion-option value="nes">1 hari</ion-option>
+            <ion-option value="n64">2 Hari</ion-option>
+            <ion-option value="ps">3 Hari</ion-option>
+            <ion-option value="genesis">4 Hari</ion-option>
+            <ion-option value="saturn">5 Hari</ion-option>
+            <ion-option value="snes">6 Hari</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-select [(ngModel)]="sorting" placeholder="Urutkan" item-width="40px" class="inputSelect">
+            <ion-option value="nes">Nama A-Z</ion-option>
+            <ion-option value="n64">Nama Z-A</ion-option>
+            <ion-option value="ps">Terbaru</ion-option>
+            <ion-option value="genesis">Terlama</ion-option>
+            <ion-option value="saturn">Nilai Terbesar</ion-option>
+            <ion-option value="snes">Nilai Terendah</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div col-6>
+      <ion-item>
+        <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="tanggal" class="inputSelect tanggal" placeholder="Tanggal"></ion-datetime>
+      </ion-item>
+      <br/>
+      <button ion-button block color="cssRedMedium">Terapkan</button>
+    </div>
+  </div>
+  <div id="container">
+    <div id="content">
+      <ion-row >
+        <ion-col col-1.5 class="borderHead">ID Transaksi</ion-col>
+        <ion-col col-1.5 class="borderHead">Waktu Transaksi</ion-col>
+        <ion-col col-1.5 class="borderHead">Nama Barang</ion-col>
+        <ion-col col-1.5 class="borderHead">Supplier</ion-col>
+        <ion-col col-1.5 class="borderHead">Harga</ion-col>
+        <ion-col col-1.5 class="borderHead">Jumlah Barang</ion-col>
+        <ion-col col-1.5 class="borderHead">Jumlah Keuntungan</ion-col>
+        <ion-col col-1.5 class="borderHead">Jumlah Uang Masuk</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1.5 class="borderCont">B345</ion-col>
+        <ion-col col-1.5 class="borderCont">12/05/18 17:32</ion-col>
+        <ion-col col-1.5 class="borderCont">Oreo Kacang Hijau</ion-col>
+        <ion-col col-1.5 class="borderCont">Unilever</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 10.000</ion-col>
+        <ion-col col-1.5 class="borderCont">2</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 2.000</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 12.000</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1.5 class="borderCont">B345</ion-col>
+        <ion-col col-1.5 class="borderCont">12/05/18 17:32</ion-col>
+        <ion-col col-1.5 class="borderCont">Oreo Kacang Hijau</ion-col>
+        <ion-col col-1.5 class="borderCont">Unilever</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 10.000</ion-col>
+        <ion-col col-1.5 class="borderCont">2</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 2.000</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 12.000</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1.5 class="borderCont">B345</ion-col>
+        <ion-col col-1.5 class="borderCont">12/05/18 17:32</ion-col>
+        <ion-col col-1.5 class="borderCont">Oreo Kacang Hijau</ion-col>
+        <ion-col col-1.5 class="borderCont">Unilever</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 10.000</ion-col>
+        <ion-col col-1.5 class="borderCont">2</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 2.000</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 12.000</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1.5 class="borderCont">B345</ion-col>
+        <ion-col col-1.5 class="borderCont">12/05/18 17:32</ion-col>
+        <ion-col col-1.5 class="borderCont">Oreo Kacang Hijau</ion-col>
+        <ion-col col-1.5 class="borderCont">Unilever</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 10.000</ion-col>
+        <ion-col col-1.5 class="borderCont">2</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 2.000</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 12.000</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1.5 class="borderCont">B345</ion-col>
+        <ion-col col-1.5 class="borderCont">12/05/18 17:32</ion-col>
+        <ion-col col-1.5 class="borderCont">Oreo Kacang Hijau</ion-col>
+        <ion-col col-1.5 class="borderCont">Unilever</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 10.000</ion-col>
+        <ion-col col-1.5 class="borderCont">2</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 2.000</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 12.000</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1.5 class="borderCont">B345</ion-col>
+        <ion-col col-1.5 class="borderCont">12/05/18 17:32</ion-col>
+        <ion-col col-1.5 class="borderCont">Oreo Kacang Hijau</ion-col>
+        <ion-col col-1.5 class="borderCont">Unilever</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 10.000</ion-col>
+        <ion-col col-1.5 class="borderCont">2</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 2.000</ion-col>
+        <ion-col col-1.5 class="borderCont">Rp. 12.000</ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <div class="footer">
+    <ion-row >
+      <ion-col col-6>Total Jumlah Barang</ion-col>
+      <ion-col col-1>:</ion-col>
+      <ion-col col-5>1000</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>Total Uang Masuk</ion-col>
+      <ion-col col-1>:</ion-col>
+      <ion-col col-5>Rp 1000.000</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>Total Keuntungan</ion-col>
+      <ion-col col-1>:</ion-col>
+      <ion-col col-5>Rp 100.000</ion-col>
+    </ion-row>
+  </div>
 
 </ion-content>
+
+<ion-footer>
+    <button ion-button block color="cssRedMedium">Cetak Laporan</button>
+  </ion-footer>
