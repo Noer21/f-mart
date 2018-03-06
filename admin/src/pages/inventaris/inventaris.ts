@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TambahInventarisPage } from '../tambah-inventaris/tambah-inventaris';
+import { DetailInventarisPage } from '../detail-inventaris/detail-inventaris';
 
 /**
  * Generated class for the InventarisPage page.
@@ -20,6 +22,14 @@ export class InventarisPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InventarisPage');
+  }
+
+  addInventaris(){
+    this.navCtrl.push(TambahInventarisPage)
+  }
+
+  detail(){
+    this.navCtrl.push(DetailInventarisPage)
   }
 
 }

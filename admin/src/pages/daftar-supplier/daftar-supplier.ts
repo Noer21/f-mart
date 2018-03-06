@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BarangSupplierPage } from '../barang-supplier/barang-supplier';
+import { TambahSupplierPage } from '../tambah-supplier/tambah-supplier';
 
 /**
  * Generated class for the DaftarSupplierPage page.
@@ -20,6 +22,14 @@ export class DaftarSupplierPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DaftarSupplierPage');
+  }
+
+  detail(){
+    this.navCtrl.push(BarangSupplierPage);
+  }
+
+  addSupplier(){
+    this.navCtrl.push(TambahSupplierPage)
   }
 
 }

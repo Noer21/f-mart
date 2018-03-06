@@ -1,0 +1,67 @@
+<!--
+  Generated template for the DetailInventarisPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="cssRedMedium">
+    <ion-title>Rincian Barang</ion-title>
+    <ion-buttons end>
+      <ion-icon name="create" class="create"></ion-icon>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="background">
+  <div class="labels">Nama Barang</div>
+    <ion-item>
+       <ion-input type="text" placeholder="Gelang Faperta" disabled="true"></ion-input>
+    </ion-item>
+    <div class="labels">Supplier</div>
+    <ion-item>
+      <ion-select [(ngModel)]="waktu" placeholder="Agung MF" item-width="40px" class="inputSelect" disabled="true">
+        <ion-option value="nes">Unilever</ion-option>
+        <ion-option value="n64">Mayora</ion-option>
+        <ion-option value="ps">Bu Haji</ion-option>
+        <ion-option value="genesis">Andi Surandi</ion-option>
+        <ion-option value="saturn">Jakarta Cloth</ion-option>
+        <ion-option value="snes">Kapuyuak</ion-option>
+      </ion-select>
+    </ion-item>
+    <div class="labels">Harga Jual Supplier</div>
+    <ion-item>
+      <ion-input type="number" placeholder="8.000" disabled="true"></ion-input>
+    </ion-item>
+    <div class="labels">Harga Jual F-Mart</div>
+    <ion-item>
+      <ion-input type="number" placeholder="10.000" disabled="true"></ion-input>
+    </ion-item>
+    <div class="labels">Stok Tersedia</div>
+    <ion-item>
+      <ion-input type="number" placeholder="78" disabled="true"></ion-input>
+    </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col col-4>
+      <button ion-button block color="cssRedMedium" (click)="return()">
+      Return Barang
+      </button>
+    </ion-col>
+    <ion-col col-4>
+      <button ion-button block color="cssRedMedium" (click)="return()">
+      Restock Barang
+      </button>
+    </ion-col>
+    <ion-col col-4>
+      <button ion-button block color="cssRedMedium" (click)="return()">
+      Delete Barang
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

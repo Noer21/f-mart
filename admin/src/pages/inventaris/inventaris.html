@@ -14,5 +14,32 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="background">
+  <div class="card" (click)="detail()">
+    <ion-row>
+      <ion-col col-6 class="cont1">
+        <div class="cont1a">Item A</div>
+        <div class="cont1b">Supllier X</div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="cont2a">Harga</div>
+        <div class="cont2b">Jumlah barang</div>  
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button block color="cssRedMedium" (click)="addInventaris()">
+        Tambah
+      </button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button block color="cssRedMedium" (click)="addInventaris()">
+        Urutkan
+      </button>
+    </ion-col>
+  </ion-row> 
+</ion-footer>

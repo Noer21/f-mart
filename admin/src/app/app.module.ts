@@ -11,6 +11,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { InventarisPage } from '../pages/inventaris/inventaris';
 import { LaporanPenjualanPage } from '../pages/laporan-penjualan/laporan-penjualan';
 import { DaftarSupplierPage } from '../pages/daftar-supplier/daftar-supplier';
+import { BarangSupplierPage } from '../pages/barang-supplier/barang-supplier';
+import { TambahSupplierPage } from '../pages/tambah-supplier/tambah-supplier';
+import { TambahInventarisPage } from '../pages/tambah-inventaris/tambah-inventaris';
+import { DetailInventarisPage } from '../pages/detail-inventaris/detail-inventaris';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { DaftarSupplierPage } from '../pages/daftar-supplier/daftar-supplier';
     ListPage,
     InventarisPage,
     LaporanPenjualanPage,
-    DaftarSupplierPage
+    DaftarSupplierPage,
+    BarangSupplierPage,
+    TambahSupplierPage,
+    TambahInventarisPage,
+    DetailInventarisPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +40,11 @@ import { DaftarSupplierPage } from '../pages/daftar-supplier/daftar-supplier';
     ListPage,
     InventarisPage,
     LaporanPenjualanPage,
-    DaftarSupplierPage
+    DaftarSupplierPage,
+    BarangSupplierPage,
+    TambahSupplierPage,
+    TambahInventarisPage,
+    DetailInventarisPage
   ],
   providers: [
     StatusBar,
