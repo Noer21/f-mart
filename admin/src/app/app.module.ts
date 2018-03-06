@@ -15,6 +15,7 @@ import { BarangSupplierPage } from '../pages/barang-supplier/barang-supplier';
 import { TambahSupplierPage } from '../pages/tambah-supplier/tambah-supplier';
 import { TambahInventarisPage } from '../pages/tambah-inventaris/tambah-inventaris';
 import { DetailInventarisPage } from '../pages/detail-inventaris/detail-inventaris';
+import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DetailInventarisPage } from '../pages/detail-inventaris/detail-inventar
     BarangSupplierPage,
     TambahSupplierPage,
     TambahInventarisPage,
-    DetailInventarisPage
+    DetailInventarisPage,
+    EditInventarisPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { DetailInventarisPage } from '../pages/detail-inventaris/detail-inventar
     BarangSupplierPage,
     TambahSupplierPage,
     TambahInventarisPage,
-    DetailInventarisPage
+    DetailInventarisPage,
+    EditInventarisPage
   ],
   providers: [
     StatusBar,

@@ -1,26 +1,26 @@
 <!--
-  Generated template for the TambahInventarisPage page.
+  Generated template for the EditInventarisPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar  color="cssRedMedium">
-    <ion-title>Tambah Inventaris</ion-title>
-  </ion-navbar>
+    <ion-navbar  color="cssRedMedium">
+      <ion-title>Sunting Inventaris</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
 
-</ion-header>
 
-
-<ion-content class="background" padding>
-  <div class="labels">Nama Barang</div>
+<ion-content padding class="background">
+    <div class="labels">Nama Barang</div>
     <ion-item>
-       <ion-input type="text" placeholder="masukan nama barang"></ion-input>
+       <ion-input type="text" placeholder="nama barang x"></ion-input>
     </ion-item>
     <div class="labels">Supplier</div>
     <ion-item>
-      <ion-select [(ngModel)]="waktu" placeholder="Pilih Supplier" item-width="40px" class="inputSelect">
+      <ion-select [(ngModel)]="waktu" placeholder="Supplier X" item-width="40px" class="inputSelect">
         <ion-option value="nes">Unilever</ion-option>
         <ion-option value="n64">Mayora</ion-option>
         <ion-option value="ps">Bu Haji</ion-option>
@@ -31,16 +31,16 @@
     </ion-item>
     <div class="labels">Harga Jual Supplier</div>
     <ion-item>
-      <ion-input type="number" placeholder="masukan harga jual supplier/pcs"></ion-input>
+      <ion-input type="number" placeholder="harga jual X/pcs"></ion-input>
     </ion-item>
     <div class="labels">Harga Jual F-Mart</div>
     <ion-item>
-      <ion-input type="number" placeholder="masukan harga jual F-Mart/pcs"></ion-input>
+      <ion-input type="number" placeholder="harga jual X/pcs"></ion-input>
     </ion-item>
 </ion-content>
 
 <ion-footer>
-  <button ion-button block color="cssRedMedium" (click)="addSupplier()">
-    Tambah Inventaris
-  </button>
-</ion-footer>
+    <button ion-button block color="cssRedMedium" (click)="addSupplier()">
+      Simpan
+    </button>
+  </ion-footer>

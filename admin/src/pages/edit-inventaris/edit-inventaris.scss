@@ -1,4 +1,4 @@
-page-detail-inventaris {
+page-edit-inventaris {
     .background{
         background-color: $cssMainBackground;
         background-repeat:  no-repeat;
@@ -19,15 +19,4 @@ page-detail-inventaris {
         max-width: 100% !important;
         min-width: 100% !important;
     }
-
-    .create{
-        font-size: 6vw;
-        color: white;
-        margin-right: 3vw
-    }
-
-    .butt{
-        color: $cssRedMedium;
-    }
-
 }

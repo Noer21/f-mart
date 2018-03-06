@@ -8,8 +8,10 @@
 
   <ion-navbar color="cssRedMedium">
     <ion-title>Rincian Barang</ion-title>
-    <ion-buttons end>
-      <ion-icon name="create" class="create"></ion-icon>
+    <ion-buttons end color="cssRedMedium">
+      <button (click)="edit()" ion-button clear color="cssRedMedium">
+        <ion-icon name="create" class="create"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
@@ -54,12 +56,12 @@
       </button>
     </ion-col>
     <ion-col col-4>
-      <button ion-button block color="cssRedMedium" (click)="return()">
+      <button ion-button block color="cssRedMedium" (click)="restock()">
       Restock Barang
       </button>
     </ion-col>
     <ion-col col-4>
-      <button ion-button block color="cssRedMedium" (click)="return()">
+      <button ion-button block color="cssRedMedium" (click)="delete()">
       Delete Barang
       </button>
     </ion-col>
