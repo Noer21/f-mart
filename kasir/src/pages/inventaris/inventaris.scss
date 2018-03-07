@@ -1,0 +1,43 @@
+page-inventaris {
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat:  no-repeat;
+        background-size: cover;
+    }
+
+    .card{
+        background-color: white;
+        margin: 2vw;
+    }
+
+    .cont1a{
+        font-size: 6vw;
+        text-align: center;
+        margin-top: 9%
+    }
+
+    .cont1b{
+        font-size: 3vw;
+        text-align: center;
+    }
+
+    .cont2a{
+        border-bottom: 0.5vw solid black;
+        font-size: 5vw;
+        text-align: center;
+        color: $cssRedMedium;
+        padding-bottom: 1vw;
+        margin-top: 4vw
+
+    }
+
+    .cont2b{
+        text-align: center;
+        margin: 1vw 1vw 4vw 1vw;
+        font-size: 4vw
+    }
+
+    ion-icon{
+        font-size: 7vw
+    }
+}

@@ -1,0 +1,27 @@
+page-check-out {
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .bg1{
+        background-color: white;
+        margin: 2vw;
+    }
+
+    .head{
+        padding: 2vw 4vw 1vw 4vw;
+        font-weight: 500;
+        margin: 2vw 15vw;
+        font-size: 5vw;
+        border-bottom: 0.5vw solid $cssRedMedium;
+        text-align: center;
+    }
+
+    .cont{
+        margin: 2vw;
+        border: 0.2vw solid grey;
+    }
+
+}

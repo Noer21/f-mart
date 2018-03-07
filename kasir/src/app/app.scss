@@ -1,5 +1,59 @@
 // http://ionicframework.com/docs/theming/
 
+.background{
+    background-color: $cssRedMedium;
+    border-color: $cssRedMedium;
+}
+
+.listMenu{
+    font-size: 5vw;
+    color: white;
+}
+
+.mainTittle{
+    margin: 3vw;
+    text-align: center;
+    background-color: $cssRedDark;
+    color: white;
+}
+
+.judul1{
+    padding: 2vw 2vw 6vw 2vw;
+}
+
+.judul2{
+    font-size: 3vw;
+}
+
+.judul3{
+    font-size: 7vw;
+    padding: 0vw 0vw 4vw 0vw;
+    margin-bottom: 4vw;
+}
+
+.iconstyle{
+    font-size: 13vw;
+    color: white;
+    text-align: center 
+}
+
+.info{
+    transform-origin: center;
+    margin-top: 60%;
+}
+
+.infoText{
+    text-align: center;
+    font-size: 4vw;
+    color: white;
+}
+
+.fateta{
+    text-align: center;
+    font-size: 5vw;
+    color: white;
+    padding : 8vw 0vw 0vw 0vw;
+}
 
 // App Global Sass
 // --------------------------------------------------

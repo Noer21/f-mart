@@ -1,0 +1,39 @@
+page-pembelian {
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat:  no-repeat;
+        background-size: cover;
+    }
+
+    .main{
+        background-color: transparent;
+        margin: 2vw;
+        
+    }
+
+    .contents{
+        background-color: white;
+        margin-top: 2%;
+        border: 0.1vw solid black;
+    }
+
+    .items{
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .price{
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .stock{
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .input{
+        font-size: 4vw;
+        text-align: center; 
+    }
+}
