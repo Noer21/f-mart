@@ -17,6 +17,10 @@ import { TambahInventarisPage } from '../pages/tambah-inventaris/tambah-inventar
 import { DetailInventarisPage } from '../pages/detail-inventaris/detail-inventaris';
 import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+import { Data } from '../providers/data';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,7 +37,9 @@ import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,6 +58,7 @@ import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
   providers: [
     StatusBar,
     SplashScreen,
+    Data,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

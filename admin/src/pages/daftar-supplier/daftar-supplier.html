@@ -15,29 +15,21 @@
 
 
 <ion-content  class="background">
-  <div class="card" (click)="detail()">
+  <div id="SearchBar">
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Cari supplier..."></ion-searchbar>
+  </div>
+  <div class="card" (click)="detail(supplier)" *ngFor="let supplier of suppliers">
     <ion-row>
-      <ion-col col-6 class="cont1">
-        Supplier X
+      <ion-col col-6>
+        <div  class="cont1">{{supplier.supplier_name}}</div>
+        <div class="tabungan">Tabungan : Rp 800.000</div>
       </ion-col>
       <ion-col col-6>
-        <div class="cont2a">Asal</div>
-        <div class="cont2b">Kontak</div>          
+        <div class="cont2a">{{supplier.supplier_address}}</div>
+        <div class="cont2b">{{supplier.supplier_contact}}</div>          
       </ion-col>
     </ion-row>
   </div>
-  <div class="card">
-    <ion-row>
-      <ion-col col-6 class="cont1">
-        Supplier X
-      </ion-col>
-      <ion-col col-6>
-        <div class="cont2a">Asal</div>
-        <div class="cont2b">Kontak</div>          
-      </ion-col>
-    </ion-row>
-  </div>
-</ion-content>
 
 <ion-footer>
   <button ion-button block color="cssRedMedium" (click)="addSupplier()">

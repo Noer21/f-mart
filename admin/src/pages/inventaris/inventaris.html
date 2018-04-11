@@ -15,15 +15,19 @@
 
 
 <ion-content class="background">
-  <div class="card" (click)="detail()">
+  <div id="SearchBar">
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Cari barang..."></ion-searchbar>
+  </div>
+
+  <div class="card" (click)="detail()" *ngFor="let inventaris of inventarises">
     <ion-row>
       <ion-col col-6 class="cont1">
-        <div class="cont1a">Item A</div>
-        <div class="cont1b">Supllier X</div>
+        <div class="cont1a">{{inventaris.item_name}}</div>
+        <div class="cont1b">{{inventaris.supplier_name}}</div>
       </ion-col>
       <ion-col col-6>
-        <div class="cont2a">Harga</div>
-        <div class="cont2b">Jumlah barang</div>  
+        <div class="cont2a">Rp. {{inventaris.costumer_price}}</div>
+        <div class="cont2b">Stock {{inventaris.item_stock}}</div>  
       </ion-col>
     </ion-row>
   </div>

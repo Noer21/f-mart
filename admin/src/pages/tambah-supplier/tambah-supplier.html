@@ -12,22 +12,24 @@
 
 
 <ion-content class="background" padding>
-    <div class="labels">Nama Supplier</div>
-    <ion-item>
-       <ion-input type="text" placeholder="masukan nama supplier"></ion-input>
-    </ion-item>
-    <div class="labels">Asal Supplier</div>
-    <ion-item>
-      <ion-input type="text" placeholder="masukan asal supplier"></ion-input>
-    </ion-item>
-    <div class="labels">Kontak Supplier</div>
-    <ion-item>
-      <ion-input type="number" placeholder="masukan kontak supplier"></ion-input>
-    </ion-item>      
+    <form #supplierForm="ngForm" novalidate>
+      <div class="labels">Nama Supplier</div>
+      <ion-item>
+        <ion-input type="text" placeholder="masukan nama supplier" [(ngModel)]="namaSupplier" #name="ngModel" name="namasupplier"></ion-input>
+      </ion-item>
+        <div class="labels">Asal Supplier</div>
+      <ion-item>
+        <ion-input type="text" placeholder="masukan asal supplier" [(ngModel)]="asalSupplier" #name="ngModel" name="asalsupplier"></ion-input>
+      </ion-item>
+        <div class="labels">Kontak Supplier</div>
+      <ion-item>
+        <ion-input type="number" placeholder="masukan kontak supplier" [(ngModel)]="kontakSupplier" #name="ngModel" name="kontaksupplier"></ion-input>
+      </ion-item>
+    </form>    
 </ion-content>
 
 <ion-footer>
-  <button ion-button block color="cssRedMedium" (click)="addSupplier()">
+  <button ion-button block color="cssRedMedium" (click)="addSupplier(supplierForm)">
     Tambah Supplier
   </button>
 </ion-footer>
