@@ -31,7 +31,7 @@ export class DaftarSupplierPage {
     public alertCtrl: AlertController,
     public loadCtrl: LoadingController,
     public http: Http) {
-      this.getSupplier();
+    this.getSupplier();
   }
 
   ionViewDidLoad() {

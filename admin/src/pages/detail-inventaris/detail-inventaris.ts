@@ -15,12 +15,27 @@ import { EditInventarisPage } from '../edit-inventaris/edit-inventaris';
   templateUrl: 'detail-inventaris.html',
 })
 export class DetailInventarisPage {
+  nama_barang: any;
+  nama_supplier: any;
+  harga_barang: any;
+  harga_jual: any;
+  stok_barang: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
   ) {
+
+    let temp = this.navParams.data;
+
+    this.nama_barang = temp.item_name;
+    this.nama_supplier = temp.supplier_name;
+    this.harga_barang = temp.supplier_price;
+    this.harga_jual = temp.customer_price;
+    this.stok_barang = temp.item_stock
+    
+
   }
 
   ionViewDidLoad() {

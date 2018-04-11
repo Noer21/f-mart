@@ -20,32 +20,25 @@
 
 <ion-content padding class="background">
   <div class="labels">Nama Barang</div>
-    <ion-item>
-       <ion-input type="text" placeholder="Gelang Faperta" disabled="true"></ion-input>
-    </ion-item>
-    <div class="labels">Supplier</div>
-    <ion-item>
-      <ion-select [(ngModel)]="waktu" placeholder="Agung MF" item-width="40px" class="inputSelect" disabled="true">
-        <ion-option value="nes">Unilever</ion-option>
-        <ion-option value="n64">Mayora</ion-option>
-        <ion-option value="ps">Bu Haji</ion-option>
-        <ion-option value="genesis">Andi Surandi</ion-option>
-        <ion-option value="saturn">Jakarta Cloth</ion-option>
-        <ion-option value="snes">Kapuyuak</ion-option>
-      </ion-select>
-    </ion-item>
-    <div class="labels">Harga Jual Supplier</div>
-    <ion-item>
-      <ion-input type="number" placeholder="8.000" disabled="true"></ion-input>
-    </ion-item>
-    <div class="labels">Harga Jual F-Mart</div>
-    <ion-item>
-      <ion-input type="number" placeholder="10.000" disabled="true"></ion-input>
-    </ion-item>
-    <div class="labels">Stok Tersedia</div>
-    <ion-item>
-      <ion-input type="number" placeholder="78" disabled="true"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-input type="text" placeholder="{{nama_barang}}" disabled="true"></ion-input>
+  </ion-item>
+  <div class="labels">Supplier</div>
+  <ion-item>
+    <ion-input type="number" placeholder="{{nama_supplier}}" disabled="true"></ion-input>
+  </ion-item>
+  <div class="labels">Harga Jual Supplier</div>
+  <ion-item>
+    <ion-input type="number" placeholder="{{harga_barang}}" disabled="true"></ion-input>
+  </ion-item>
+  <div class="labels">Harga Jual F-Mart</div>
+  <ion-item>
+    <ion-input type="number" placeholder="{{harga_jual}}" disabled="true"></ion-input>
+  </ion-item>
+  <div class="labels">Stok Tersedia</div>
+  <ion-item>
+    <ion-input type="number" placeholder="{{stok_barang}}" disabled="true"></ion-input>
+  </ion-item>
 </ion-content>
 
 <ion-footer>

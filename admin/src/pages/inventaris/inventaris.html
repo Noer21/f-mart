@@ -19,7 +19,7 @@
     <ion-searchbar (ionInput)="getItems($event)" placeholder="Cari barang..."></ion-searchbar>
   </div>
 
-  <div class="card" (click)="detail()" *ngFor="let inventaris of inventarises">
+  <div class="card" (click)="detail(inventaris)" *ngFor="let inventaris of inventarises">
     <ion-row>
       <ion-col col-6 class="cont1">
         <div class="cont1a">{{inventaris.item_name}}</div>

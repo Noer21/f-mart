@@ -21,6 +21,7 @@ export class TambahSupplierPage {
   namaSupplier: string;
   asalSupplier: string;
   kontakSupplier: number;
+  detailSupplier: string;
 
   submitted = false;
   constructor(public navCtrl: NavController, 
@@ -55,9 +56,10 @@ export class TambahSupplierPage {
 
       // api
       let input = {
-        nama: this.namaSupplier, 
-        harga: this.asalSupplier,
-        satuan: this.kontakSupplier
+        supplier_name: this.namaSupplier, 
+        supplier_address: this.asalSupplier,
+        supplier_contact: this.kontakSupplier,
+        supplier_detail: this.detailSupplier
       };
         this.http.post(this.data.BASE_URL+"/suppliers_add.php",input).subscribe(data => {
         let response = data.json();
@@ -71,6 +73,7 @@ export class TambahSupplierPage {
             buttons: ['OK']
           });
           alert.present();
+          this.navCtrl.setRoot(DaftarSupplierPage)
         }
         else {
           loading.dismiss();

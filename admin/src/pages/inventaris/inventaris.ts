@@ -42,8 +42,8 @@ export class InventarisPage {
     this.navCtrl.push(TambahInventarisPage)
   }
 
-  detail(){
-    this.navCtrl.push(DetailInventarisPage)
+  detail(data){
+    this.navCtrl.push(DetailInventarisPage, data)
   }
 
   getInventaris(){
