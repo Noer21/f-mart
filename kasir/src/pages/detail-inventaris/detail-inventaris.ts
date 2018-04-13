@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController  } from 'ionic-angular';
+import { Data } from '../../providers/data';
+import { NgForm } from '@angular/forms';
+import { Http } from '@angular/http';import { InventarisPage } from '../inventaris/inventaris';
+import { EditInventarisPage } from '../edit-inventaris/edit-inventaris';
 
 /**
  * Generated class for the DetailInventarisPage page.
@@ -15,15 +19,45 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class DetailInventarisPage {
 
+  id_barang: any;
+  nama_barang: any;
+  nama_supplier: any;
+  harga_barang: any;
+  harga_jual: any;
+  stok_barang: any;
+  datas: any;
+  restock_barang: any;
+
   constructor(
-    public navCtrl: NavController,
+    public navCtrl: NavController, 
     public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
+    private data : Data,
+    public http: Http
   ) {
+
+    let temp = this.navParams.data;
+
+    this.id_barang = temp.item_id;
+    this.nama_barang = temp.item_name;
+    this.nama_supplier = temp.supplier_name;
+    this.harga_barang = temp.supplier_price;
+    this.harga_jual = temp.costumer_price;
+    this.stok_barang = temp.item_stock
+
+    this.datas = temp;
+  
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailInventarisPage');
+    
+    console.log("data", this.datas);
+  }
+
+  dismiss(){
+    this.viewCtrl.dismiss();
   }
 
   return() {
@@ -32,15 +66,17 @@ export class DetailInventarisPage {
       message: "Masukan Jumlah Barang",
       inputs: [
         {
-          name: 'Jumlah Barang',
-          placeholder: 'Jumlah'
+          name: 'jumlahBarang',
+          placeholder: 'Jumlah',
         },
       ],
       buttons: [
         {
           text: 'Return',
           handler: data => {
-            console.log('Cancel clicked');
+            console.log(JSON.stringify(data)); //to see the object
+            console.log(data.jumlahBarang);
+            this.returnProduct(data.jumlahBarang);
           }
         },
         {
@@ -60,7 +96,7 @@ export class DetailInventarisPage {
       message: "Masukan Jumlah Barang",
       inputs: [
         {
-          name: 'Jumlah Barang',
+          name: 'jumlahBarang',
           placeholder: 'Jumlah'
         },
       ],
@@ -68,7 +104,9 @@ export class DetailInventarisPage {
         {
           text: 'Restock',
           handler: data => {
-            console.log('Cancel clicked');
+            console.log(JSON.stringify(data)); //to see the object
+            console.log(data.jumlahBarang);
+            this.restokProduct(data.jumlahBarang);
           }
         },
         {
@@ -96,12 +134,130 @@ export class DetailInventarisPage {
         {
           text: 'Ya',
           handler: () => {
-            console.log('Agree clicked');
+            this.hapusProduk();
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  hapusProduk(){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+
+    loading.present();
+
+    // api
+    this.http.post(this.data.BASE_URL+"/items_delete.php", this.navParams.data).subscribe(data => {
+      let response = data.json();
+
+      console.log(response);
+      if(response.status==200){
+
+        loading.dismiss();
+        this.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Berhasil Menghapus',   
+          buttons: ['OK']
+        });
+        alert.present();
+        this.navCtrl.setRoot(InventarisPage)
+      }
+      else {
+        loading.dismiss();
+         let alert = this.alertCtrl.create({
+            title: 'Gagal Menghapus',
+            subTitle: 'Silahkan coba lagi',      
+            buttons: ['OK']
+          });
+          alert.present();
+      }      
+
+    });
+  }
+
+  restokProduct(total_item){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    let id = this.navParams.data.item_id;
+    this.restock_barang = {item_id:id, total_item:total_item};
+
+    loading.present();
+
+    // api
+    this.http.post(this.data.BASE_URL+"/items_restock.php", this.restock_barang).subscribe(data => {
+      let response = data.json();
+      console.log(this.restock_barang);
+      console.log(response);
+      if(response.status==200){
+
+        loading.dismiss();
+        this.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Berhasil Menambah',   
+          buttons: ['OK']
+        });
+        alert.present();
+        this.navCtrl.setRoot(InventarisPage)
+      }
+      else {
+        loading.dismiss();
+         let alert = this.alertCtrl.create({
+            title: 'Gagal Menambah',
+            subTitle: 'Silahkan coba lagi',      
+            buttons: ['OK']
+          });
+          alert.present();
+      }      
+
+    });
+  }
+
+  returnProduct(total_item){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    let id = this.navParams.data.item_id;
+    this.restock_barang = {item_id:id, total_item:total_item};
+
+    loading.present();
+
+    // api
+    this.http.post(this.data.BASE_URL+"/items_return.php", this.restock_barang).subscribe(data => {
+      let response = data.json();
+      console.log(this.restock_barang);
+      console.log(response);
+      if(response.status==200){
+
+        loading.dismiss();
+        this.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Berhasil Mengembalikan',   
+          buttons: ['OK']
+        });
+        alert.present();
+        this.navCtrl.setRoot(InventarisPage)
+      }
+      else {
+        loading.dismiss();
+         let alert = this.alertCtrl.create({
+            title: 'Gagal Mengembalikan',
+            subTitle: 'Silahkan coba lagi',      
+            buttons: ['OK']
+          });
+          alert.present();
+      }      
+
+    });
+  }
+
+  edit(datas){
+    this.navCtrl.push(EditInventarisPage,{
+      param1: datas
+    })
   }
 
 }

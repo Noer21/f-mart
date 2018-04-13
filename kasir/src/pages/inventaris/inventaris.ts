@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController,LoadingController,AlertController } from 'ionic-angular';
+import { Data } from '../../providers/data';
+import { NgForm } from '@angular/forms';
+import { Http } from '@angular/http';
 import { DetailInventarisPage } from '../detail-inventaris/detail-inventaris';
-
+import { TambahInventarisPage } from '../tambah-inventaris/tambah-inventaris';
 /**
  * Generated class for the InventarisPage page.
  *
@@ -16,15 +19,90 @@ import { DetailInventarisPage } from '../detail-inventaris/detail-inventaris';
 })
 export class InventarisPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  list_search: any;
+  search = false;
+  inventarises: any;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    private data : Data,
+    public alertCtrl: AlertController,
+    public loadCtrl: LoadingController,
+    public http: Http) {
+      this.getInventaris();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InventarisPage');
   }
 
-  detail(){
-    this.navCtrl.push(DetailInventarisPage)
+  addInventaris(){
+    this.navCtrl.push(TambahInventarisPage)
+  }
+
+  detail(data){
+    this.navCtrl.push(DetailInventarisPage, data)
+  }
+
+  getInventaris(){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+    
+    loading.present();
+    //api
+      this.http.get(this.data.BASE_URL+"/items_show.php").subscribe(data => {
+      let response = data.json();
+      console.log(response); 
+      if(response.status==200){    
+        this.inventarises = response.data;
+        loading.dismiss();
+      }
+      else {
+        loading.dismiss();
+         let alert = this.alertCtrl.create({
+            title: 'Gagal',
+            subTitle: response.message,      
+            buttons: ['OK']
+          });
+          alert.present();
+      }
+    });
+    //api
+  }
+
+  //search
+  //search
+  getItems(ev) {
+    this.search=true;
+
+    // Reset items back to all of the items
+    this.list_search = this.inventarises;
+
+    console.log('list:'+this.list_search);
+
+    // set val to the value of the ev target
+    var val = ev.target.value;
+    console.log(val);
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      // this.list_search = this.list_search.filter((item) => {
+      //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      // })
+
+      this.list_search = this.list_search.filter((data) => {
+        return ((data.item_name.toLowerCase().indexOf(val.toLowerCase()) > -1));
+      })
+    }
+    else {
+      this.search=false;
+      this.getInventaris();
+    }
+
+    console.log(this.list_search);
+    console.log("search="+this.search);
   }
 
 }

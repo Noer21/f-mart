@@ -12,6 +12,11 @@ import { InventarisPage } from '../pages/inventaris/inventaris';
 import { DetailInventarisPage } from '../pages/detail-inventaris/detail-inventaris';
 import { PembelianPage } from '../pages/pembelian/pembelian';
 import { CheckOutPage } from '../pages/check-out/check-out';
+import { TambahInventarisPage } from '../pages/tambah-inventaris/tambah-inventaris';
+import { Data } from '../providers/data';
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
 
 @NgModule({
   declarations: [
@@ -21,11 +26,15 @@ import { CheckOutPage } from '../pages/check-out/check-out';
     PembelianPage,
     InventarisPage,
     DetailInventarisPage,
-    CheckOutPage
+    CheckOutPage,
+    TambahInventarisPage,
+    EditInventarisPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,11 +44,14 @@ import { CheckOutPage } from '../pages/check-out/check-out';
     PembelianPage,
     InventarisPage,
     DetailInventarisPage,
-    CheckOutPage
+    CheckOutPage,
+    TambahInventarisPage,
+    EditInventarisPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Data,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

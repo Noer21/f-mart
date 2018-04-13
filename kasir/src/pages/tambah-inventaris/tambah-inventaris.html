@@ -1,0 +1,45 @@
+<!--
+  Generated template for the TambahInventarisPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  color="cssRedMedium">
+    <ion-title>Tambah Inventaris</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="background" padding>
+  <form #inventarisForm="ngForm" novalidate>
+    <div class="labels">Nama Barang</div>
+    <ion-item>
+       <ion-input type="text" placeholder="masukan nama barang" [(ngModel)]="namaBarang" #name="ngModel" name="namabarang"></ion-input>
+    </ion-item>
+    <div class="labels">Supplier</div>
+    <ion-item>
+      <ion-select [(ngModel)]="idSupplier" #name="ngModel" name="idsupplier" placeholder="Pilih Supplier" item-width="40px" class="inputSelect" >
+        <div *ngFor="let supplier of suppliers">
+          <ion-option value={{supplier.supplier_id}}>{{supplier.supplier_name}}</ion-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <div class="labels">Harga Jual Supplier</div>
+    <ion-item>
+      <ion-input type="number" placeholder="masukan harga jual  supplier/pcs" [(ngModel)]="hargaBarang" #name="ngModel" name="hargabarang"></ion-input>
+    </ion-item>
+    <div class="labels">Harga Jual F-Mart</div>
+    <ion-item>
+      <ion-input type="number" placeholder="masukan harga jual F-Mart/pcs" [(ngModel)]="hargaJual" #name="ngModel" name="hargajual"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block color="cssRedMedium" (click)="addInventaris(inventarisForm)">
+    Tambah Inventaris
+  </button>
+</ion-footer>
