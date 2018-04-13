@@ -92,9 +92,8 @@ export class InventarisPage {
       //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
       // })
 
-
       this.list_search = this.list_search.filter((data) => {
-        return (data.nama_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return ((data.item_name.toLowerCase().indexOf(val.toLowerCase()) > -1));
       })
     }
     else {
