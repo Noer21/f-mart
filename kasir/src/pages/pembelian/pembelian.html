@@ -15,44 +15,28 @@
 
 
 <ion-content class="background">
-  <div class="main">
-    <ion-row class="contents">
-      <ion-col col-3 class="items">
-        Item
-      </ion-col>
-      <ion-col col-2 class="price">
-        Harga
-      </ion-col>
-      <ion-col col-2 class="stock">
-        Stock
-      </ion-col>
-      <ion-col col-5 class="input">
-        <ion-icon name="remove-circle" (click)="decrement()"></ion-icon>
-          {{currentNumber}}
-        <ion-icon name="add-circle" (click)="increment()"></ion-icon>
-      </ion-col>
-    </ion-row>
-    <ion-row class="contents">
-      <ion-col col-3 class="items">
-        Item
-      </ion-col>
-      <ion-col col-2 class="price">
-        Harga
-      </ion-col>
-      <ion-col col-2 class="stock">
-        Stock
-      </ion-col>
-      <ion-col col-5 class="input">
-        <ion-icon name="remove-circle" (click)="decrement()"></ion-icon>
-          {{currentNumber}}
-        <ion-icon name="add-circle" (click)="increment()"></ion-icon>
-      </ion-col>
-    </ion-row>
-  </div>
+  <form #cart="ngForm" novalidate>
+    <div class="main">
+      <ion-row class="contents" *ngFor="let inventaris of inventarises">
+        <ion-col col-3 class="items">
+          {{inventaris.item_name}}
+        </ion-col>
+        <ion-col col-4   class="price">
+          Rp. {{inventaris.costumer_price}}
+        </ion-col>
+        <ion-col col-5>
+            <ion-input type="number" placeholder="0" [(ngModel)]="barang[inventaris.item_id]" #name="ngModel" name="currentnumber" class="input"></ion-input>
+          <!-- <ion-icon name="remove-circle" (click)="decrement()"></ion-icon>
+            {{currentNumber[0]}}
+          <ion-icon name="add-circle" (click)="increment()"></ion-icon> -->
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
 </ion-content>
 
 <ion-footer>
-  <button ion-button block color="cssRedMedium" (click)="checkOut()">
+  <button ion-button block color="cssRedMedium" (click)="checkOut(cart)">
     Check Out
   </button>
 </ion-footer>

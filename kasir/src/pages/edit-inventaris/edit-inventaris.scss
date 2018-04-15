@@ -1,3 +1,22 @@
 page-edit-inventaris {
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat:  no-repeat;
+        background-size: cover;
+    }
 
+    .labels{
+        font-size: 5vw;
+        color: black;
+    }
+
+    .item.item-input {
+        font-size: 4vw;
+        margin: 2vw 0vw;
+    }
+
+    .inputSelect{
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
 }

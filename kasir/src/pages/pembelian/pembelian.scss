@@ -25,15 +25,19 @@ page-pembelian {
     .price{
         font-size: 4vw;
         text-align: center;
+        vertical-align: baseline;
     }
 
     .stock{
         font-size: 4vw;
         text-align: center;
+        
     }
 
-    .input{
+    input{
+        border: black solid 0.2vw;
+        margin: 0;
         font-size: 4vw;
-        text-align: center; 
+        text-align: center;
     }
 }
