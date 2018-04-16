@@ -38,8 +38,8 @@ export class DaftarSupplierPage {
     console.log('ionViewDidLoad DaftarSupplierPage');
   }
 
-  detail(){
-    this.navCtrl.push(BarangSupplierPage);
+  detail(data){
+    this.navCtrl.push(BarangSupplierPage, data);
   }
 
   addSupplier(){
@@ -92,9 +92,8 @@ export class DaftarSupplierPage {
       //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
       // })
 
-
       this.list_search = this.list_search.filter((data) => {
-        return (data.nama_supplier.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return ((data.supplier_name.toLowerCase().indexOf(val.toLowerCase()) > -1));
       })
     }
     else {

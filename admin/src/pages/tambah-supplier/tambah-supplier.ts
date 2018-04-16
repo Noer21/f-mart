@@ -42,9 +42,23 @@ export class TambahSupplierPage {
     this.viewCtrl.dismiss();
   }
 
+  negatif(){
+    let alert = this.alertCtrl.create({
+      title: 'Negataive!',
+      subTitle: 'Kontak tidak mungkin negatif!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   addSupplier(form: NgForm) {
     
     this.submitted = true;
+
+    if (this.kontakSupplier < 0){
+      this.negatif();
+      return;
+    }
 
     let loading = this.loadCtrl.create({
         content: 'memuat..'

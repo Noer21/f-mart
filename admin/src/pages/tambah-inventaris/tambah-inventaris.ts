@@ -45,6 +45,15 @@ export class TambahInventarisPage {
     this.viewCtrl.dismiss();
   }
 
+  negatif(){
+    let alert = this.alertCtrl.create({
+      title: 'Negataive!',
+      subTitle: 'Harga tidak mungkin negatif!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   getSupplier(){
     let loading = this.loadCtrl.create({
       content: 'memuat..'
@@ -75,6 +84,11 @@ export class TambahInventarisPage {
   addInventaris(form: NgForm) {
     
     this.submitted = true;
+    if(this.hargaBarang < 0 || this.hargaJual < 0){
+      this.negatif();
+      return;      
+    }
+
 
     let loading = this.loadCtrl.create({
         content: 'memuat..'

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, AlertController   } from 'ionic-angular';
 import { Data } from '../../providers/data';
 import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
@@ -54,6 +54,15 @@ export class DetailInventarisPage {
   ionViewDidLoad() {
     
     console.log("data", this.datas);
+  }
+
+  negatif(){
+    let alert = this.alertCtrl.create({
+      title: 'Negataive!',
+      subTitle: 'Jumlah Barang tidak mungkin negatif!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   dismiss(){
@@ -179,6 +188,12 @@ export class DetailInventarisPage {
   }
 
   restokProduct(total_item){
+
+    if(total_item < 0){
+      this.negatif;
+      return;
+    }
+
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
@@ -217,6 +232,12 @@ export class DetailInventarisPage {
   }
 
   returnProduct(total_item){
+
+    if(total_item < 0){
+      this.negatif();
+      return;
+    }
+
     let loading = this.loadCtrl.create({
       content: 'memuat..'
     });
