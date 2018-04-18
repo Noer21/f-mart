@@ -137,9 +137,8 @@ export class BarangSupplierPage {
     let id = this.navParams.data.supplier_id;
 
     loading.present();
-
     // api
-    this.http.get(this.data.BASE_URL+"/items_return.php?supplier_id="+id,).subscribe(data => {
+    this.http.get(this.data.BASE_URL+"/take_savings.php?supplier_id="+id,).subscribe(data => {
       let response = data.json();
       console.log(id, response);
       if(response.status==200){

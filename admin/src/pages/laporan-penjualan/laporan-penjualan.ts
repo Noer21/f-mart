@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, ModalController,LoadingController,
 import { Data } from '../../providers/data';
 import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
+import { File } from '@ionic-native/file';
+
+import * as papa from 'papaparse'; 
 
 /**
  * Generated class for the LaporanPenjualanPage page.
@@ -33,19 +36,74 @@ export class LaporanPenjualanPage {
   uangMasuk: number;
   totalUntung: number;
 
+  col_names:string[] = ["ID Transaksi", "Waktu Transaksi", "Nama Barang", "Supplier", "Harga", "Jumlah Barang", "Keuntungan", "Uang Masuk"]
+
+  col_data:string[][]
+
+  
+  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
     private data : Data,
     public alertCtrl: AlertController,
     public loadCtrl: LoadingController,
-    public http: Http) {
+    public http: Http,
+    private file: File) {
     this.getReport();
     this.getSupplier();
+    this.makeData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LaporanPenjualanPage');
+  }
+
+  makeData(){
+    // let temp:string[] = [];
+    // let i = 0;
+    // for(let report of this.reports){
+    //   temp.push(report.transaction_id);
+    //   temp.push(report.transaction_date);
+    //   temp.push(report.item_name);
+    //   temp.push(report.supplier_name);
+    //   temp.push(report.costumer_price);
+    // }
+    let temp:string[][] = [[]];
+    let i =0;
+    // for(let report of this.reports){
+    //   let j = 0;
+    //   temp[i][j] = report.transaction_id;
+    //   j++
+    //   temp[i][j] = report.transaction_date;
+    //   j++
+    //   temp[i][j] = report.item_name;
+    //   j++
+    //   temp[i][j] = report.supplier_name;
+    //   j++
+    //   temp[i][j] = report.costumer_price;
+    //   j++
+    //   i++
+    // }
+    console.log(temp)
+  }
+
+  WriteCSV(){
+   
+    console.log(this.col_data)
+
+    // let csv = papa.unparse({
+    //   fields: this.col_names,
+    //   data: this.reports
+    // });
+
+    // var blob = new Blob([csv]);
+    // var a = window.document.createElement("a");
+    // a.href = window.URL.createObjectURL(blob);
+    // a.download = "laporan.csv";
+    // document.body.appendChild(a);
+    // a.click();
+    // document.body.removeChild(a);
   }
 
   addFilter(form: NgForm){
