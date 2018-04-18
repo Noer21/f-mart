@@ -20,12 +20,17 @@ page-pembelian {
     .items{
         font-size: 4vw;
         text-align: center;
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
     }
 
     .price{
         font-size: 4vw;
         text-align: center;
-        vertical-align: baseline;
+        display: flex!important; //ilmu midle vertical
+        align-content: center!important;
+        align-items: center!important;
     }
 
     .stock{
@@ -35,9 +40,25 @@ page-pembelian {
     }
 
     input{
+        height: 10vw;
+        background-color: black;
         border: black solid 0.2vw;
         margin: 0;
         font-size: 4vw;
         text-align: center;
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+    }
+
+    ion-col{
+        height: 20vw;
+    }
+
+    .nilai{
+        font-size: 3vw;
+        padding: 3vw;
+        margin: 0vw 2vw;
+        border: 0.1vw solid black;
     }
 }

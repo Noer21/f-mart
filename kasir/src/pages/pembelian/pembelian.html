@@ -18,17 +18,19 @@
   <form #cart="ngForm" novalidate>
     <div class="main">
       <ion-row class="contents" *ngFor="let inventaris of inventarises">
-        <ion-col col-3 class="items">
+        <ion-col col-5 class="items">
           {{inventaris.item_name}}
         </ion-col>
-        <ion-col col-4   class="price">
+        <ion-col col-4 class="price">
           Rp. {{inventaris.costumer_price}}
         </ion-col>
-        <ion-col col-5>
-            <ion-input type="number" placeholder="0" [(ngModel)]="barang[inventaris.item_id]" #name="ngModel" name="currentnumber" class="input"></ion-input>
-          <!-- <ion-icon name="remove-circle" (click)="decrement()"></ion-icon>
-            {{currentNumber[0]}}
-          <ion-icon name="add-circle" (click)="increment()"></ion-icon> -->
+        <ion-col col-3 class="price">
+            <!-- <ion-input type="number" placeholder="" [(ngModel)]="barang[inventaris.item_id]" #name="ngModel" name="currentnumber" class="input"></ion-input> -->
+          <ion-icon name="remove-circle" (click)="decrement(inventaris.item_id)" class="buttonHarga"></ion-icon>
+          <div class="nilai">
+              {{barang[inventaris.item_id]}}
+          </div>
+          <ion-icon name="add-circle" (click)="increment(inventaris.item_id)"class="buttonHarga"></ion-icon>
         </ion-col>
       </ion-row>
     </div>
@@ -36,7 +38,7 @@
 </ion-content>
 
 <ion-footer>
-  <button ion-button block color="cssRedMedium" (click)="checkOut(cart)">
+  <button ion-button block color="cssRedMedium" (click)="checkOut_1(cart)">
     Check Out
   </button>
 </ion-footer>
