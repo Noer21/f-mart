@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar color="cssRedMedium">
-    <ion-title>Barang Supplier X</ion-title>
+    <ion-title>Barang Supplier {{this.temp.supplier_name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,24 +14,13 @@
 <ion-content padding class="background">
   <ion-row class="contents" *ngFor="let item of items">
     <ion-col col-4 class="items">
-      item
+      {{item.item_name}}
     </ion-col>
     <ion-col col-4 class="price">
-      Harga
+      Rp. {{item.supplier_price}}
     </ion-col>
     <ion-col col-4 class="stock">
-      Stock
-    </ion-col>
-  </ion-row>
-  <ion-row class="contents">
-    <ion-col col-4 class="items">
-      Item
-    </ion-col>
-    <ion-col col-4 class="price">
-      Harga
-    </ion-col>
-    <ion-col col-4 class="stock">
-      Stock
+      {{item.item_stock}} pcs
     </ion-col>
   </ion-row>
 </ion-content>
@@ -44,7 +33,7 @@
       </button>
     </ion-col>
     <ion-col col-6>
-      <button ion-button block color="cssRedMedium" (click)="history()">
+      <button ion-button block color="cssRedMedium" (click)="history(datas)">
       Riwayat Pengambilan
       </button>
     </ion-col>

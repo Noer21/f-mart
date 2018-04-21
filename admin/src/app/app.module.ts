@@ -21,26 +21,47 @@ import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { Data } from '../providers/data';
+import { HistorySupplierPage } from '../pages/history-supplier/history-supplier';
+import { DaftarSupplierPageModule } from '../pages/daftar-supplier/daftar-supplier.module';
+import { BarangSupplierPageModule } from '../pages/barang-supplier/barang-supplier.module';
+import { DetailInventarisPageModule } from '../pages/detail-inventaris/detail-inventaris.module';
+import { EditInventarisPageModule } from '../pages/edit-inventaris/edit-inventaris.module';
+import { HistorySupplierPageModule } from '../pages/history-supplier/history-supplier.module';
+import { InventarisPageModule } from '../pages/inventaris/inventaris.module';
+import { LaporanPenjualanPageModule } from '../pages/laporan-penjualan/laporan-penjualan.module';
+import { TambahInventarisPageModule } from '../pages/tambah-inventaris/tambah-inventaris.module';
+import { TambahSupplierPageModule } from '../pages/tambah-supplier/tambah-supplier.module';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    InventarisPage,
-    LaporanPenjualanPage,
-    DaftarSupplierPage,
-    BarangSupplierPage,
-    TambahSupplierPage,
-    TambahInventarisPage,
-    DetailInventarisPage,
-    EditInventarisPage
+    //InventarisPage,
+    //LaporanPenjualanPage,
+    //DaftarSupplierPage,
+    //BarangSupplierPage,
+    //TambahSupplierPage,
+    //TambahInventarisPage,
+    //DetailInventarisPage,
+    //EditInventarisPage,
+    //HistorySupplierPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    DaftarSupplierPageModule,
+    BarangSupplierPageModule,
+    DetailInventarisPageModule,
+    EditInventarisPageModule,
+    HistorySupplierPageModule,
+    InventarisPageModule,
+    LaporanPenjualanPageModule,
+    TambahInventarisPageModule,
+    TambahSupplierPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,13 +75,15 @@ import { Data } from '../providers/data';
     TambahSupplierPage,
     TambahInventarisPage,
     DetailInventarisPage,
-    EditInventarisPage
+    EditInventarisPage,
+    HistorySupplierPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Data,
     File,
+    FileTransfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

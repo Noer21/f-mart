@@ -20,7 +20,7 @@ import { EditInventarisPage } from '../edit-inventaris/edit-inventaris';
 })
 export class DetailInventarisPage {
   id_barang: any;
-  nama_barang: any;
+  nama_barang: string;
   nama_supplier: any;
   harga_barang: any;
   harga_jual: any;
@@ -132,7 +132,7 @@ export class DetailInventarisPage {
   delete() {
     let confirm = this.alertCtrl.create({
       title: 'Delete Inventaris',
-      message: 'Apakah anda yakin akan menghapus barang X dari inventaris?',
+      message: 'Apakah anda yakin akan menghapus '+ this.nama_barang  +' dari inventaris?',
       buttons: [
         {
           text: 'Batal',

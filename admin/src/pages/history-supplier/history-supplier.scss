@@ -1,0 +1,23 @@
+page-history-supplier {
+
+    .borderHead{
+        border: 0.1vw solid black;
+      }
+  
+    .borderCont{
+        border: 0vw 0.1vw 0vw 0.1vw solid black;
+    }
+
+    .content{
+        text-align: center;
+        background: white;
+        border: 0.1vw solid black;
+    }
+
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat:  no-repeat;
+        background-size: cover;
+    }
+
+}

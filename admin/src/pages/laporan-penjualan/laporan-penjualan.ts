@@ -3,9 +3,10 @@ import { IonicPage, NavController, NavParams, ModalController,LoadingController,
 import { Data } from '../../providers/data';
 import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 
-import * as papa from 'papaparse'; 
+import * as papa from 'papaparse';
 
 /**
  * Generated class for the LaporanPenjualanPage page.
@@ -36,10 +37,7 @@ export class LaporanPenjualanPage {
   uangMasuk: number;
   totalUntung: number;
 
-  col_names:string[] = ["ID Transaksi", "Waktu Transaksi", "Nama Barang", "Supplier", "Harga", "Jumlah Barang", "Keuntungan", "Uang Masuk"]
-
-  col_data:string[][]
-
+  sort = false;
   
   
   constructor(public navCtrl: NavController, 
@@ -49,53 +47,29 @@ export class LaporanPenjualanPage {
     public alertCtrl: AlertController,
     public loadCtrl: LoadingController,
     public http: Http,
-    private file: File) {
+    private file: File,
+    private transfer: FileTransfer,) {
     this.getReport();
     this.getSupplier();
-    this.makeData();
+    //this.getPrint();
   }
+
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LaporanPenjualanPage');
   }
 
-  makeData(){
-    // let temp:string[] = [];
-    // let i = 0;
-    // for(let report of this.reports){
-    //   temp.push(report.transaction_id);
-    //   temp.push(report.transaction_date);
-    //   temp.push(report.item_name);
-    //   temp.push(report.supplier_name);
-    //   temp.push(report.costumer_price);
-    // }
-    let temp:string[][] = [[]];
-    let i =0;
-    // for(let report of this.reports){
-    //   let j = 0;
-    //   temp[i][j] = report.transaction_id;
-    //   j++
-    //   temp[i][j] = report.transaction_date;
-    //   j++
-    //   temp[i][j] = report.item_name;
-    //   j++
-    //   temp[i][j] = report.supplier_name;
-    //   j++
-    //   temp[i][j] = report.costumer_price;
-    //   j++
-    //   i++
-    // }
-    console.log(temp)
-  }
-
   WriteCSV(){
-   
-    console.log(this.col_data)
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    const url = this.data.BASE_URL+'report_export.php';
+    fileTransfer.download(url, this.file.dataDirectory+'report.csv').then((entry) => {
+      console.log('download complete: ' + entry.toURL());
+    }, (error) => {
+    // handle error
+    });
 
-    // let csv = papa.unparse({
-    //   fields: this.col_names,
-    //   data: this.reports
-    // });
+    // let csv = papa.unparse(this.print);
 
     // var blob = new Blob([csv]);
     // var a = window.document.createElement("a");
@@ -107,6 +81,8 @@ export class LaporanPenjualanPage {
   }
 
   addFilter(form: NgForm){
+    this.sort=true;
+
     if(this.idSupplier==undefined){
       this.idSupplier = -1
     }
@@ -119,11 +95,15 @@ export class LaporanPenjualanPage {
     
     loading.present();
     //api
-      this.http.get(this.data.BASE_URL+"/report_home.php?date="+this.reportTanggal+"&supplier_id"+this.reportTanggal).subscribe(data => {
+    console.log("id supplier ", this.idSupplier)
+      this.http.get(this.data.BASE_URL+"/report_home.php?date="+this.reportTanggal+"&supplier_id="+this.idSupplier).subscribe(data => {
       let response = data.json();
-      console.log(response); 
+      console.log(response, "Report"); 
       if(response.status==200){    
         this.reports = response.data;
+        this.totalBarang = response.total_barang;
+        this.uangMasuk = response.uang_masuk;
+        this.totalUntung = response.keuntungan;
         loading.dismiss();
       }
       else {
@@ -176,7 +156,7 @@ export class LaporanPenjualanPage {
     //api
       this.http.get(this.data.BASE_URL+"/reporting_home.php").subscribe(data => {
       let response = data.json();
-      console.log(response); 
+      console.log(response, "reporting"); 
       if(response.status==200){    
         this.reports = response.data;
         this.totalBarang = response.total_barang;
@@ -198,35 +178,73 @@ export class LaporanPenjualanPage {
     //api
   }
 
+  download() {
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    const url = 'http://staffnew.uny.ac.id/upload/131474242/penelitian/LAPORAN+PENELITIAN.pdf';
+    fileTransfer.download(url, this.file.dataDirectory + 'LAPORAN+PENELITIAN.pdf.pdf').then((entry) => {
+      console.log('download complete: ' + entry.toURL());
+    }, (error) => {
+      // handle error
+    });
+  }
+
+  getPrint(){
+  //   let loading = this.loadCtrl.create({
+  //     content: 'memuat..'
+  //   });
+    
+  //   loading.present();
+  //   //api
+  //     this.http.get(this.data.BASE_URL+"/print.php").subscribe(data => {
+  //     let response = data.json();
+  //     console.log(response); 
+  //     if(response.status==200){    
+  //       this.print = response.data;
+  //       console.log(this.print)
+  //       loading.dismiss();
+  //     }
+  //     else {
+  //       loading.dismiss();
+  //        let alert = this.alertCtrl.create({
+  //           title: 'Gagal',
+  //           subTitle: response.message,      
+  //           buttons: ['OK']
+  //         });
+  //         alert.present();
+  //     }
+  //   });
+  //   //api
+  }
+
   getItems(ev) {
-    this.search=true;
+  //   this.search=true;
 
-    // Reset items back to all of the items
-    this.list_search = this.reports;
+  //   // Reset items back to all of the items
+  //   this.list_search = this.reports;
 
-    console.log('list:'+this.list_search);
+  //   console.log('list:'+this.list_search);
 
-    // set val to the value of the ev target
-    var val = ev.target.value;
-    console.log(val);
+  //   // set val to the value of the ev target
+  //   var val = ev.target.value;
+  //   console.log(val);
 
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      // this.list_search = this.list_search.filter((item) => {
-      //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      // })
+  //   // if the value is an empty string don't filter the items
+  //   if (val && val.trim() != '') {
+  //     // this.list_search = this.list_search.filter((item) => {
+  //     //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  //     // })
 
-      this.list_search = this.list_search.filter((data) => {
-        return ((data.item_name.toLowerCase().indexOf(val.toLowerCase()) > -1));
-      })
-    }
-    else {
-      this.search=false;
-      this.getReport();
-    }
+  //     this.list_search = this.list_search.filter((data) => {
+  //       return ((data.item_name.toLowerCase().indexOf(val.toLowerCase()) > -1));
+  //     })
+  //   }
+  //   else {
+  //     this.search=false;
+  //     this.getReport();
+  //   }
 
-    console.log(this.list_search);
-    console.log("search="+this.search);
+  //   console.log(this.list_search);
+  //   console.log("search="+this.search);
   }
 
 }

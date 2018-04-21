@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
 import { DaftarSupplierPage } from '../daftar-supplier/daftar-supplier';
 import { DaftarSupplierPageModule } from '../daftar-supplier/daftar-supplier.module';
+import { HistorySupplierPage } from '../history-supplier/history-supplier';
 
 /**
  * Generated class for the BarangSupplierPage page.
@@ -22,6 +23,7 @@ export class BarangSupplierPage {
 
   temp: any;
   items: any;
+  datas:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -30,10 +32,11 @@ export class BarangSupplierPage {
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     private data : Data,
-    public http: Http
-  ) {
+    public http: Http){
+    this.getBarang()
 
     this.temp = this.navParams.data;
+    this.datas = this.temp;
   
   }
 
@@ -42,7 +45,7 @@ export class BarangSupplierPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BarangSupplierPage', this.temp);
+    console.log('ionViewDidLoad BarangSupplierPage', this.temp.supplier_id);
   }
 
   negatif(){
@@ -172,11 +175,12 @@ export class BarangSupplierPage {
     
     loading.present();
     //api
-      this.http.get(this.data.BASE_URL+"/suppliers_detail.php?supplier_id="+this.temp.supplier_id).subscribe(data => {
+      this.http.get(this.data.BASE_URL+"/suppliers_detail.php?supplier_id="+this.navParams.data.supplier_id).subscribe(data => {
       let response = data.json();
       console.log(response); 
       if(response.status==200){    
-        this.items = response.data;
+        this.items = response.items;
+        console.log(this.items)
         loading.dismiss();
       }
       else {
@@ -191,5 +195,17 @@ export class BarangSupplierPage {
     });
     //api
   }
+
+  history(datas){
+    this.navCtrl.push(HistorySupplierPage,{
+      param1: datas
+    })
+  }
+
+  // edit(datas){
+  //   this.navCtrl.push(EditInventarisPage,{
+  //     param1: datas
+  //   })
+  // }
 
 }
