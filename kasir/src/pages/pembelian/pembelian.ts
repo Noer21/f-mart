@@ -21,7 +21,7 @@ export class PembelianPage {
   
   n:number;
   barang:any[] = [];
-  barang_fix:any[] = []; //id barang jumlah
+  barang_fix:{ id: number, quantity: number }[] = []; //id barang jumlah
   inventarises: any;
 
   filter_barang_beli:any[] = [];
@@ -148,15 +148,19 @@ export class PembelianPage {
   }
 
   checkOut_1(form: NgForm){
-    while(this.barang_fix.length > 0) {
-      this.barang_fix.pop();
+  while(this.barang_fix.length > 0) {
+    this.barang_fix.pop();
   }
     let i = 0;
     for(this.n=0; this.n<=5000; this.n++){
       if(this.barang[this.n]>0){
-        this.barang_fix.push(this.n, this.barang[this.n])
-        this.filter_barang_beli[i] = this.n;
-        i++;
+        let newObj = {
+          id: this.n,
+          quantity: this.barang[this.n]
+      }; 
+      this.barang_fix.push(newObj);
+      this.filter_barang_beli[i] = this.n;
+      i++;
       }
     }
 

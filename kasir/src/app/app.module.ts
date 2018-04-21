@@ -17,24 +17,36 @@ import { Data } from '../providers/data';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { EditInventarisPage } from '../pages/edit-inventaris/edit-inventaris';
+import { PembelianPageModule } from '../pages/pembelian/pembelian.module';
+import { InventarisPageModule } from '../pages/inventaris/inventaris.module';
+import { DetailInventarisPageModule } from '../pages/detail-inventaris/detail-inventaris.module';
+import { CheckOutPageModule } from '../pages/check-out/check-out.module';
+import { TambahInventarisPageModule } from '../pages/tambah-inventaris/tambah-inventaris.module';
+import { EditInventarisPageModule } from '../pages/edit-inventaris/edit-inventaris.module';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    PembelianPage,
-    InventarisPage,
-    DetailInventarisPage,
-    CheckOutPage,
-    TambahInventarisPage,
-    EditInventarisPage
+    // PembelianPage,
+    // InventarisPage,
+    // DetailInventarisPage,
+    // CheckOutPage,
+    // TambahInventarisPage,
+    // EditInventarisPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    PembelianPageModule,
+    InventarisPageModule,
+    DetailInventarisPageModule,
+    CheckOutPageModule,
+    TambahInventarisPageModule,
+    EditInventarisPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
