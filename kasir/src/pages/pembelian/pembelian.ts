@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController,LoadingController,
 import { Data } from '../../providers/data';
 import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/timeout';
 import { CheckOutPage } from '../check-out/check-out';
 
 /**
@@ -21,13 +22,15 @@ export class PembelianPage {
   
   n:number;
   barang:any[] = [];
-  barang_fix:{ id: number, quantity: number }[] = []; //id barang jumlah
+  barang_fix:{ item_id: number, total_item: number }[] = []; //id barang jumlah
   inventarises: any;
 
   filter_barang_beli:any[] = [];
   confirm_barang:any[] = []; //nama barang jumlah
 
   pesan:string;
+
+  total_harga:number = 0;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -43,6 +46,15 @@ export class PembelianPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PembelianPage', this.inventarises);
+  }
+
+  rto(){
+    let alert = this.alertCtrl.create({
+      title: 'Gagal',
+      subTitle: 'Periksa Jaringan Anda,',      
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   initiateArray(){
@@ -73,11 +85,9 @@ export class PembelianPage {
       content: 'memuat..'
     });
 
-    let input = {
-      item_buy: this.barang_fix
-    };
+    let input = this.barang_fix;
     
-    this.http.post(this.data.BASE_URL+"/cahsier_home.php", input).subscribe(data => {
+    this.http.post(this.data.BASE_URL+"/cashier_home.php", input).subscribe(data => {
       let response = data.json();
 
       console.log(response);
@@ -107,7 +117,7 @@ export class PembelianPage {
   }
 
   checkout_2() {
-    this.pesan = "Anda telah memesan:\n";
+    this.pesan = "Anda telah memesan:<br />";
     for(let l =0; l <=5000; l+=2){
       if(this.confirm_barang[l] == undefined){
       }
@@ -115,10 +125,11 @@ export class PembelianPage {
         this.pesan = this.pesan.concat(this.confirm_barang[l]);
         this.pesan = this.pesan.concat(" sejumlah ");
         this.pesan = this.pesan.concat(this.confirm_barang[l+1]);
-        this.pesan = this.pesan.concat(" buah.\n");
+        this.pesan = this.pesan.concat(" buah.<br />");
       }
-      
     }
+
+    this.pesan = this.pesan.concat("<br /> Total harga : "+this.total_harga);
 
     console.log(this.pesan)
 
@@ -130,7 +141,8 @@ export class PembelianPage {
         {
           text: 'Konfirmasi',
           handler: data => {
-            console.log(this.barang_fix)
+            console.log(this.barang_fix);
+            this.checkout_3();
             this.navCtrl.setRoot(PembelianPage)
             //this.checkout_3()
           }
@@ -140,6 +152,7 @@ export class PembelianPage {
           handler: data => {
             this.barang_fix = [];
             this.confirm_barang = [];
+            this.total_harga = 0;
           }
         }
       ]
@@ -155,8 +168,8 @@ export class PembelianPage {
     for(this.n=0; this.n<=5000; this.n++){
       if(this.barang[this.n]>0){
         let newObj = {
-          id: this.n,
-          quantity: this.barang[this.n]
+          item_id: this.n,
+          total_item: this.barang[this.n]
       }; 
       this.barang_fix.push(newObj);
       this.filter_barang_beli[i] = this.n;
@@ -168,17 +181,16 @@ export class PembelianPage {
     for(let inv of this.inventarises){
       for (let j = 0; j <= this.filter_barang_beli.length; j++){
         if(inv.item_id == this.filter_barang_beli[j]){
+          this.total_harga = this.total_harga + this.barang[inv.item_id] * inv.costumer_price
           this.confirm_barang.push(inv.item_name, this.barang[inv.item_id]);
         }
       }
     }
 
-    console.log(this.barang_fix, this.filter_barang_beli, this.confirm_barang)
+    console.log(this.total_harga)
 
     this.checkout_2()
   }
-
-  
 
   getInventaris(){
     let loading = this.loadCtrl.create({
@@ -187,7 +199,7 @@ export class PembelianPage {
     
     loading.present();
     //api
-      this.http.get(this.data.BASE_URL+"/items_show.php").subscribe(data => {
+      this.http.get(this.data.BASE_URL+"/items_cashier.php").timeout(1000).subscribe(data => {
       let response = data.json();
       console.log(response);
       console.log("array", response[1]); 
@@ -204,7 +216,7 @@ export class PembelianPage {
           });
           alert.present();
       }
-    });
+    },(err) => { loading.dismiss(); this.rto() });
     //api
   }
 
