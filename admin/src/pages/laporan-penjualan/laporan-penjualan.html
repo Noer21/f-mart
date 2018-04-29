@@ -26,7 +26,7 @@
       <div col-4>
         <ion-item>
           <ion-select [(ngModel)]="idSupplier" #name="ngModel" name="idsupplier" placeholder="Supplier" item-width="40px" class="inputSelect" >
-            <ion-option value="-1">All</ion-option>
+            <ion-option value=-1>All</ion-option>
             <div *ngFor="let supplier of suppliers">
               <ion-option value={{supplier.supplier_id}}>{{supplier.supplier_name}}</ion-option>
             </div>

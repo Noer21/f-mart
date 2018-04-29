@@ -39,7 +39,7 @@ export class DaftarSupplierPage {
   }
 
   detail(data){
-    this.navCtrl.push(BarangSupplierPage, data);
+    this.navCtrl.setRoot(BarangSupplierPage, data);
   }
 
   addSupplier(){

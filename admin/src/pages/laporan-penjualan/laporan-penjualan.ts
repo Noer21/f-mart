@@ -4,6 +4,7 @@ import { Data } from '../../providers/data';
 import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { File } from '@ionic-native/file';
 
 import * as papa from 'papaparse';
@@ -48,7 +49,8 @@ export class LaporanPenjualanPage {
     public loadCtrl: LoadingController,
     public http: Http,
     private file: File,
-    private transfer: FileTransfer,) {
+    private transfer: FileTransfer,
+    private iab: InAppBrowser) {
     this.getReport();
     this.getSupplier();
     //this.getPrint();
@@ -83,40 +85,103 @@ export class LaporanPenjualanPage {
   addFilter(form: NgForm){
     this.sort=true;
 
-    if(this.idSupplier==undefined){
-      this.idSupplier = -1
+    if (this.idSupplier==-1 && this.reportTanggal==undefined){
+      this.getReport()
     }
-    if(this.reportTanggal==undefined){
-      this.reportTanggal = "1111-11-11"
+
+    else if(this.idSupplier==undefined || this.idSupplier==-1){
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      
+      loading.present();
+      //api
+      console.log("id supplier ", this.idSupplier)
+        this.http.get(this.data.BASE_URL+"/report_home.php?date="+this.reportTanggal).subscribe(data => {
+        let response = data.json();
+        console.log(response, "Report"); 
+        if(response.status==200){    
+          this.reports = response.data;
+          this.totalBarang = response.total_barang;
+          this.uangMasuk = response.uang_masuk;
+          this.totalUntung = response.keuntungan;
+          loading.dismiss();
+        }
+        else {
+          loading.dismiss();
+           let alert = this.alertCtrl.create({
+              title: 'Gagal',
+              subTitle: response.message,      
+              buttons: ['OK']
+            });
+            alert.present();
+        }
+      });
+      //api
     }
-    let loading = this.loadCtrl.create({
-      content: 'memuat..'
-    });
-    
-    loading.present();
-    //api
-    console.log("id supplier ", this.idSupplier)
-      this.http.get(this.data.BASE_URL+"/report_home.php?date="+this.reportTanggal+"&supplier_id="+this.idSupplier).subscribe(data => {
-      let response = data.json();
-      console.log(response, "Report"); 
-      if(response.status==200){    
-        this.reports = response.data;
-        this.totalBarang = response.total_barang;
-        this.uangMasuk = response.uang_masuk;
-        this.totalUntung = response.keuntungan;
-        loading.dismiss();
-      }
-      else {
-        loading.dismiss();
-         let alert = this.alertCtrl.create({
-            title: 'Gagal',
-            subTitle: response.message,      
-            buttons: ['OK']
-          });
-          alert.present();
-      }
-    });
-    //api
+
+    else if(this.reportTanggal==undefined){
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      
+      loading.present();
+      //api
+      console.log("id supplier ", this.idSupplier)
+        this.http.get(this.data.BASE_URL+"/report_home.php?date=1111-11-11&supplier_id="+this.idSupplier).subscribe(data => {
+        let response = data.json();
+        console.log(response, "Report"); 
+        if(response.status==200){    
+          this.reports = response.data;
+          this.totalBarang = response.total_barang;
+          this.uangMasuk = response.uang_masuk;
+          this.totalUntung = response.keuntungan;
+          loading.dismiss();
+        }
+        else {
+          loading.dismiss();
+           let alert = this.alertCtrl.create({
+              title: 'Gagal',
+              subTitle: response.message,      
+              buttons: ['OK']
+            });
+            alert.present();
+        }
+      });
+      //api
+    }
+
+    else{
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+      
+      loading.present();
+      //api
+      console.log("id supplier ", this.idSupplier)
+        this.http.get(this.data.BASE_URL+"/report_home.php?date="+this.reportTanggal+"&supplier_id="+this.idSupplier).subscribe(data => {
+        let response = data.json();
+        console.log(response, "Report"); 
+        if(response.status==200){    
+          this.reports = response.data;
+          this.totalBarang = response.total_barang;
+          this.uangMasuk = response.uang_masuk;
+          this.totalUntung = response.keuntungan;
+          loading.dismiss();
+        }
+        else {
+          loading.dismiss();
+           let alert = this.alertCtrl.create({
+              title: 'Gagal',
+              subTitle: response.message,      
+              buttons: ['OK']
+            });
+            alert.present();
+        }
+      });
+      //api
+    }
+
   }
 
   getSupplier(){
@@ -179,13 +244,8 @@ export class LaporanPenjualanPage {
   }
 
   download() {
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    const url = 'http://staffnew.uny.ac.id/upload/131474242/penelitian/LAPORAN+PENELITIAN.pdf';
-    fileTransfer.download(url, this.file.dataDirectory + 'LAPORAN+PENELITIAN.pdf.pdf').then((entry) => {
-      console.log('download complete: ' + entry.toURL());
-    }, (error) => {
-      // handle error
-    });
+    let url = this.data.BASE_URL+'/report_export.php'
+    window.open(url, '_system');
   }
 
   getPrint(){

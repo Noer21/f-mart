@@ -10,12 +10,12 @@ page-laporan-penjualan {
 
     #container{
         overflow-x:scroll; 
-        width:400px;
+        width:100vw;
         
       }
     #content{
         overflow-x:scroll; /* when content is wider than container scrolling will occur on the x axis */
-        width:1500px; /* this creates the overflow area in the container */
+        width:300vw; /* this creates the overflow area in the container */
         text-align: center;
         background: white;
         border: 0.1vw solid black;

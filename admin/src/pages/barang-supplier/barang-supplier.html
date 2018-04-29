@@ -6,6 +6,11 @@
 -->
 <ion-header>
   <ion-navbar color="cssRedMedium">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name='arrow-round-back'></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Barang Supplier {{this.temp.supplier_name}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -27,14 +32,22 @@
 
 <ion-footer>
   <ion-row>
-    <ion-col col-6>
+    <ion-col col-4>
       <button ion-button block color="cssRedMedium" (click)="take_save_one_click()">
-      Bayar Tabungan
+      Bayar <br />
+      Tabungan
       </button>
     </ion-col>
-    <ion-col col-6>
+    <ion-col col-4>
       <button ion-button block color="cssRedMedium" (click)="history(datas)">
-      Riwayat Pengambilan
+      Riwayat <br />
+      Pengambilan
+      </button>
+    </ion-col>
+    <ion-col col-4>
+      <button ion-button block color="cssRedMedium" (click)="delete(datas)">
+      Hapus<br />
+      Supplier
       </button>
     </ion-col>
   </ion-row>

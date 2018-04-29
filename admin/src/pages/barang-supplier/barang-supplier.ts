@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
 import { DaftarSupplierPage } from '../daftar-supplier/daftar-supplier';
 import { DaftarSupplierPageModule } from '../daftar-supplier/daftar-supplier.module';
-import { HistorySupplierPage } from '../history-supplier/history-supplier';
+import { RiwayatRestockPage } from '../riwayat-restock/riwayat-restock';
 
 /**
  * Generated class for the BarangSupplierPage page.
@@ -55,82 +55,6 @@ export class BarangSupplierPage {
       buttons: ['OK']
     });
     alert.present();
-  }
-
-  take_save_process(uang){
-    if(uang < 0){
-      this.negatif();
-      return;
-    }
-
-    let loading = this.loadCtrl.create({
-      content: 'memuat..'
-    });
-    let id = this.navParams.data.supplier_id;
-    let take_save = {
-      supplier_id:id,
-      total_uang:uang
-    };
-
-    loading.present();
-
-    // api
-    this.http.post(this.data.BASE_URL+"/items_return.php?supplier_id="+this.navParams.data.supplier_id, this.take_save).subscribe(data => {
-      let response = data.json();
-      console.log(this.take_save);
-      console.log(response);
-      if(response.status==200){
-
-        loading.dismiss();
-        this.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Berhasil Mengembalikan',   
-          buttons: ['OK']
-        });
-        alert.present();
-        this.navCtrl.setRoot(DaftarSupplierPage)
-      }
-      else {
-        loading.dismiss();
-         let alert = this.alertCtrl.create({
-            title: 'Gagal Mengembalikan',
-            subTitle: 'Silahkan coba lagi',      
-            buttons: ['OK']
-          });
-          alert.present();
-      }      
-
-    });
-  }
-
-  take_save() {
-    let prompt = this.alertCtrl.create({
-      title: 'Ambil Tabungan',
-      message: "Masukan Jumlah Uang",
-      inputs: [
-        {
-          name: 'jumlahUang',
-          placeholder: 'Jumlah',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Return',
-          handler: data => {
-            console.log(JSON.stringify(data)); //to see the object
-            console.log(data.jumlahBarang);
-            this.take_save_process(data.jumlahuang);
-          }
-        },
-        {
-          text: 'Batal',
-          handler: data => {
-            console.log('Saved clicked');
-          }
-        }
-      ]
-    });
-    prompt.present();
   }
 
   take_save_one_click(){
@@ -197,9 +121,72 @@ export class BarangSupplierPage {
   }
 
   history(datas){
-    this.navCtrl.push(HistorySupplierPage,{
+    this.navCtrl.setRoot(RiwayatRestockPage,{
       param1: datas
     })
+  }
+  
+  delete() {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete Inventaris',
+      message: 'Apakah anda yakin akan menghapus '+ this.temp.supplier_name  +' dari inventaris?',
+      buttons: [
+        {
+          text: 'Batal',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Ya',
+          handler: () => {
+            this.hapusSupplier();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  hapusSupplier(){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+
+    loading.present();
+
+    // api
+    this.http.post(this.data.BASE_URL+"/suppliers_delete.php", this.temp
+  ).subscribe(data => {
+      let response = data.json();
+
+      console.log(response);
+      if(response.status==200){
+
+        loading.dismiss();
+        this.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Berhasil Menghapus',   
+          buttons: ['OK']
+        });
+        alert.present();
+        this.navCtrl.setRoot(DaftarSupplierPage)
+      }
+      else {
+        loading.dismiss();
+         let alert = this.alertCtrl.create({
+            title: 'Gagal Menghapus',
+            subTitle: 'Silahkan coba lagi',      
+            buttons: ['OK']
+          });
+          alert.present();
+      }      
+
+    });
+  }
+
+  back(){
+    this.navCtrl.setRoot(DaftarSupplierPage);
   }
 
   // edit(datas){
@@ -208,4 +195,79 @@ export class BarangSupplierPage {
   //   })
   // }
 
+  // take_save_process(uang){
+  //   if(uang < 0){
+  //     this.negatif();
+  //     return;
+  //   }
+
+  //   let loading = this.loadCtrl.create({
+  //     content: 'memuat..'
+  //   });
+  //   let id = this.navParams.data.supplier_id;
+  //   let take_save = {
+  //     supplier_id:id,
+  //     total_uang:uang
+  //   };
+
+  //   loading.present();
+
+  //   // api
+  //   this.http.post(this.data.BASE_URL+"/items_return.php?supplier_id="+this.navParams.data.supplier_id, this.take_save).subscribe(data => {
+  //     let response = data.json();
+  //     console.log(this.take_save);
+  //     console.log(response);
+  //     if(response.status==200){
+
+  //       loading.dismiss();
+  //       this.dismiss();
+  //       let alert = this.alertCtrl.create({
+  //         title: 'Berhasil Mengembalikan',   
+  //         buttons: ['OK']
+  //       });
+  //       alert.present();
+  //       this.navCtrl.setRoot(DaftarSupplierPage)
+  //     }
+  //     else {
+  //       loading.dismiss();
+  //        let alert = this.alertCtrl.create({
+  //           title: 'Gagal Mengembalikan',
+  //           subTitle: 'Silahkan coba lagi',      
+  //           buttons: ['OK']
+  //         });
+  //         alert.present();
+  //     }      
+
+  //   });
+  // }
+
+  // take_save() {
+  //   let prompt = this.alertCtrl.create({
+  //     title: 'Ambil Tabungan',
+  //     message: "Masukan Jumlah Uang",
+  //     inputs: [
+  //       {
+  //         name: 'jumlahUang',
+  //         placeholder: 'Jumlah',
+  //       },
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Return',
+  //         handler: data => {
+  //           console.log(JSON.stringify(data)); //to see the object
+  //           console.log(data.jumlahBarang);
+  //           this.take_save_process(data.jumlahuang);
+  //         }
+  //       },
+  //       {
+  //         text: 'Batal',
+  //         handler: data => {
+  //           console.log('Saved clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   prompt.present();
+  // }
 }

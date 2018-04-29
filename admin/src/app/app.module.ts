@@ -32,6 +32,13 @@ import { LaporanPenjualanPageModule } from '../pages/laporan-penjualan/laporan-p
 import { TambahInventarisPageModule } from '../pages/tambah-inventaris/tambah-inventaris.module';
 import { TambahSupplierPageModule } from '../pages/tambah-supplier/tambah-supplier.module';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { RiwayatRestockPage } from '../pages/riwayat-restock/riwayat-restock';
+import { RiwayatRestockPageModule } from '../pages/riwayat-restock/riwayat-restock.module';
+import { RiwayatReturnPageModule } from '../pages/riwayat-return/riwayat-return.module';
+import { RiwayatTabunganPageModule } from '../pages/riwayat-tabungan/riwayat-tabungan.module';
+import { RiwayatReturnPage } from '../pages/riwayat-return/riwayat-return';
+import { RiwayatTabunganPage } from '../pages/riwayat-tabungan/riwayat-tabungan';
 
 @NgModule({
   declarations: [
@@ -61,7 +68,10 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     InventarisPageModule,
     LaporanPenjualanPageModule,
     TambahInventarisPageModule,
-    TambahSupplierPageModule
+    TambahSupplierPageModule,
+    RiwayatRestockPageModule,
+    RiwayatReturnPageModule,
+    RiwayatTabunganPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -76,7 +86,10 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     TambahInventarisPage,
     DetailInventarisPage,
     EditInventarisPage,
-    HistorySupplierPage
+    HistorySupplierPage,
+    RiwayatRestockPage,
+    RiwayatReturnPage,
+    RiwayatTabunganPage
   ],
   providers: [
     StatusBar,
@@ -84,6 +97,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     Data,
     File,
     FileTransfer,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
