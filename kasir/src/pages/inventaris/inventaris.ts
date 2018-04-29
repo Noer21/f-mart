@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
 import { DetailInventarisPage } from '../detail-inventaris/detail-inventaris';
 import { TambahInventarisPage } from '../tambah-inventaris/tambah-inventaris';
+import 'rxjs/add/operator/timeout';
+
 /**
  * Generated class for the InventarisPage page.
  *
@@ -33,6 +35,22 @@ export class InventarisPage {
       this.getInventaris();
   }
 
+  rto(){
+    let alert = this.alertCtrl.create({
+      title: 'Gagal',
+      subTitle: 'Periksa Jaringan Anda,',      
+      buttons: [
+        {
+          text: 'Refresh',
+          handler: data => {
+            this.navCtrl.setRoot(InventarisPage);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad InventarisPage');
   }
@@ -52,7 +70,7 @@ export class InventarisPage {
     
     loading.present();
     //api
-      this.http.get(this.data.BASE_URL+"/items_show.php").subscribe(data => {
+      this.http.get(this.data.BASE_URL+"/items_show.php").timeout(7000).subscribe(data => {
       let response = data.json();
       console.log(response); 
       if(response.status==200){    
@@ -68,7 +86,7 @@ export class InventarisPage {
           });
           alert.present();
       }
-    });
+    },(err) => { loading.dismiss(); this.rto() });
     //api
   }
 

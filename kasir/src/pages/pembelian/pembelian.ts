@@ -52,7 +52,14 @@ export class PembelianPage {
     let alert = this.alertCtrl.create({
       title: 'Gagal',
       subTitle: 'Periksa Jaringan Anda,',      
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'Refresh',
+          handler: data => {
+            this.navCtrl.setRoot(PembelianPage);
+          }
+        }
+      ]
     });
     alert.present();
   }
@@ -87,7 +94,7 @@ export class PembelianPage {
 
     let input = this.barang_fix;
     
-    this.http.post(this.data.BASE_URL+"/cashier_home.php", input).subscribe(data => {
+    this.http.post(this.data.BASE_URL+"/cashier_home.php", input).timeout(7000).subscribe(data => {
       let response = data.json();
 
       console.log(response);
@@ -110,9 +117,9 @@ export class PembelianPage {
           });
           alert.present();
       }      
-    });
+    },(err) => { loading.dismiss(); this.rto() });
     
-
+    
     
   }
 
@@ -199,7 +206,7 @@ export class PembelianPage {
     
     loading.present();
     //api
-      this.http.get(this.data.BASE_URL+"/items_cashier.php").timeout(1000).subscribe(data => {
+      this.http.get(this.data.BASE_URL+"/items_cashier.php").timeout(7000).subscribe(data => {
       let response = data.json();
       console.log(response);
       console.log("array", response[1]); 
