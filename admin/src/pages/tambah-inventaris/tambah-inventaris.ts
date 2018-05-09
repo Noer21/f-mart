@@ -119,6 +119,15 @@ export class TambahInventarisPage {
           alert.present();
           this.navCtrl.setRoot(InventarisPage)
         }
+        else if(response.status==202) {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+              title: 'Duplikasi Item',
+              subTitle: 'Item dengan nama '+this.namaBarang+' Sudah ada. Pastikan anda tidak memasukannya dua kali.' ,      
+              buttons: ['OK']
+            });
+            alert.present();
+        }
         else {
           loading.dismiss();
           let alert = this.alertCtrl.create({

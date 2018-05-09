@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Data {
-  public BASE_URL = 'http://fmart.codepanda.web.id';
+  public BASE_URL = 'http://fmart.atspace.cc';
   
   public HAS_LOGGED_IN = 'status_login';
   

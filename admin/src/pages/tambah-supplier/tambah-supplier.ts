@@ -89,6 +89,15 @@ export class TambahSupplierPage {
           alert.present();
           this.navCtrl.setRoot(DaftarSupplierPage)
         }
+        else if(response.status==202) {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+              title: 'Duplikasi Supplier',
+              subTitle: 'Supplier dengan nama '+this.namaSupplier+' Sudah ada. Pastikan anda tidak memasukannya dua kali.' ,      
+              buttons: ['OK']
+            });
+            alert.present();
+        }
         else {
           loading.dismiss();
           let alert = this.alertCtrl.create({
@@ -97,7 +106,7 @@ export class TambahSupplierPage {
               buttons: ['OK']
             });
             alert.present();
-        }      
+        }       
 
       });
 

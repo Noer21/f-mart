@@ -1,0 +1,63 @@
+page-about {
+    .background{
+        background-color: $cssMainBackground;
+        background-repeat:  no-repeat;
+        background-size: cover;
+    }
+
+    .head{
+        background-color: $cssRedMedium
+    }
+
+    .appName{
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        margin: 2vw;
+    }
+
+    .appInfo1{
+        color: white;
+        text-align: center;
+        font-size: 0.8em;
+        margin-bottom: 1.5vw;
+    }
+
+    .appInfo2{
+        color: white;
+        text-align: center;
+        font-size: 1em;
+        font-weight: 500;
+        margin-bottom: 4vw;
+    }
+
+    .pict{
+        max-width: 30vw;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2.5vw;
+    }
+
+    .judul{
+        font-size: 1.5em;
+        color: $cssRedDark;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 2.5vw;
+    }
+
+    .paragraph{
+        text-align: justify;
+        text-justify: inter-word;
+        padding: 5vw;
+        // border: 1px $cssRedDark solid;
+        // border-radius: 15px;
+    }
+
+    .kaki{
+        text-align: center;
+        font-size: 0.8em;
+    }
+
+}

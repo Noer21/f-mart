@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { InventarisPage } from '../pages/inventaris/inventaris';
 import { DaftarSupplierPage } from '../pages/daftar-supplier/daftar-supplier';
 import { LaporanPenjualanPage } from '../pages/laporan-penjualan/laporan-penjualan';
+import { AboutPage } from '../pages/about/about';
 
 @Component({
   templateUrl: 'app.html'
@@ -45,5 +46,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  about(){
+    this.nav.push(AboutPage)
   }
 }

@@ -39,6 +39,8 @@ import { RiwayatReturnPageModule } from '../pages/riwayat-return/riwayat-return.
 import { RiwayatTabunganPageModule } from '../pages/riwayat-tabungan/riwayat-tabungan.module';
 import { RiwayatReturnPage } from '../pages/riwayat-return/riwayat-return';
 import { RiwayatTabunganPage } from '../pages/riwayat-tabungan/riwayat-tabungan';
+import { AboutPage } from '../pages/about/about';
+import { AboutPageModule } from '../pages/about/about.module';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { RiwayatTabunganPage } from '../pages/riwayat-tabungan/riwayat-tabungan'
     TambahSupplierPageModule,
     RiwayatRestockPageModule,
     RiwayatReturnPageModule,
-    RiwayatTabunganPageModule
+    RiwayatTabunganPageModule,
+    AboutPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -89,7 +92,8 @@ import { RiwayatTabunganPage } from '../pages/riwayat-tabungan/riwayat-tabungan'
     HistorySupplierPage,
     RiwayatRestockPage,
     RiwayatReturnPage,
-    RiwayatTabunganPage
+    RiwayatTabunganPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
